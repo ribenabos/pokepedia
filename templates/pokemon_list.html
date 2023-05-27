@@ -1,12 +1,81 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  {{ block.super }}
+  <style>
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .modal-content img {
+      width: 100%;
+    }
+
+    .modal-content h1 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .modal-content p {
+      margin-bottom: 10px;
+    }
+
+    .modal-content .card-select {
+      margin-bottom: 10px;
+    }
+  </style>
+{% endblock %}
 
 {% block content %}
-  <h1>Pokemon List</h1>
-  <ul class="bg-gray-100">
-    {% for pokemon in pokemon_list %}
-      <li><a href="{% url 'pokemon_detail' pokemon.pk %}">{{ pokemon.name }}</a></li>
-    {% empty %}
-      <li>No Pokémon found.</li>
-    {% endfor %}
-  </ul>
+<script>
+    // AJAX function to load Pokemon detail dynamically
+    function loadPokemonDetail(pk) {
+      const detailUrl = "{% url 'pokemon_detail' pk=0 %}".replace('0', pk); // Replace 0 with the actual Pokemon ID
+
+      $.ajax({
+        url: detailUrl,
+        type: "GET",
+        dataType: "html",
+        success: function (response) {
+          $('#pokemon-detail').html(response);
+        },
+        error: function (xhr, status, error) {
+          console.log(error);
+        }
+      });
+    }
+  </script>
+  <h1>Pokémon List</h1>
+
+  <div id="pokemon-list">
+    <div id="pokemon-detail"></div>
+    <ul class="pokemon-list bg-gray-100">
+      {% for pokemon in pokemon_list %}
+        <li>
+          <a href="#" onclick="loadPokemonDetail({{ pokemon.id }}); return false;">{{ pokemon.name }}</a>
+        </li>
+      {% empty %}
+        <li>No Pokémon found.</li>
+      {% endfor %}
+    </ul>
+  </div>
 {% endblock %}

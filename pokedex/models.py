@@ -95,3 +95,15 @@ class Pokemon(models.Model):
             html += f'<li><a href="{move}">{move}</a></li>'
         html += '</ul>'
         return mark_safe(html)
+
+    def get_next_by_id(self):
+        try:
+            return Pokemon.objects.filter(id__gt=self.id).order_by('id').first()
+        except Pokemon.DoesNotExist:
+            return None
+
+    def get_previous_by_id(self):
+        try:
+            return Pokemon.objects.filter(id__lt=self.id).order_by('-id').first()
+        except Pokemon.DoesNotExist:
+            return None

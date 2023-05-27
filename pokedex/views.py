@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import View
+from django.http import JsonResponse
 from .models import Pokemon
 
 
@@ -27,4 +28,13 @@ class PokemonListView(View):
         context = {
             'pokemon_list': pokemon_list
         }
-        return render(request, 'pokemon_list.html', context)
+
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            # AJAX request, return JSON response
+            data = {
+                'pokemon_list': [{'pk': pokemon.id, 'name': pokemon.name} for pokemon in pokemon_list]
+            }
+            return JsonResponse(data)
+        else:
+            # Regular request, render HTML template
+            return render(request, 'pokemon_list.html', context)

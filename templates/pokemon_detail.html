@@ -1,7 +1,4 @@
-{% extends 'base.html' %}
-
 {% block extra_css %}
-  {{ block.super }}
   <style>
     .card:before {
       content: '';
@@ -153,11 +150,18 @@
     </div>
 
     <div class="navigation">
-      <h2>Navigation:</h2>
-      <ul>
-        <li><a href="{% url 'pokedex_index' %}">Pokédex</a></li>
-        <li><a href="{% url 'pokemon_list' %}">Pokémon List</a></li>
-      </ul>
+      {% if pokemon.id > 1 %}
+      {% with previous_pokemon=pokemon.get_previous_by_id %}
+        <a class="arrow" onclick="loadPokemonDetail({{ previous_pokemon.id }});
+        return false;" href="{% url 'pokemon_detail' previous_pokemon.id %}">&lt;Previous</a>
+      {% endwith %}
+      {% endif %}
+      {% if pokemon.id < 899 %}
+      {% with next_pokemon=pokemon.get_next_by_id %}
+        <a class="arrow" onclick="loadPokemonDetail({{ next_pokemon.id }});
+        return false;" href="{% url 'pokemon_detail' next_pokemon.id %}">Next &gt;</a>
+      {% endwith %}
+      {% endif %}
     </div>
   </div>
 {% endblock %}
