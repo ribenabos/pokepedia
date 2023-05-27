@@ -7,6 +7,10 @@ Overview
 
 This is a Django project for a web application with data from the Pokémon API using the `pokebase` library.
 
+Updated up to Generation VIII.
+
+NOTE: This project is still in development.
+
 Installation
 ------------
 
