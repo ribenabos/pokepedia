@@ -15,7 +15,7 @@
 {% block content %}
   <div class="card">
     <h1 class="card-title" style="font-size: 48px"> #{{ pokemon.id }}</h1>
-    <h2 style="font-size: 36px;">{{ pokemon.name }}</h2>
+    <h2 style="font-size: 36px;">{{ pokemon.name.capitalize }}</h2>
 
     <div class="card-content">
       <div style="display: flex; flex-wrap: wrap;">
@@ -26,9 +26,9 @@
           <div class="card-select">
             <div class="select-wrapper">
               <select multiple class="w-full">
-                {% for form in pokemon.display_forms %}
+                {% with form=pokemon.display_forms %}
                   <option value="{{ form }}">{{ form }}</option>
-                {% endfor %}
+                {% endwith %}
               </select>
             </div>
           </div>
@@ -39,9 +39,9 @@
           <div class="card-select">
             <div class="select-wrapper">
               <select multiple class="w-full">
-                {% for index in pokemon.display_game_indices %}
+                {% with index=pokemon.display_game_indices %}
                   <option value="{{ index }}">{{ index }}</option>
-                {% endfor %}
+                {% endwith %}
               </select>
             </div>
           </div>
@@ -55,9 +55,9 @@
           <div class="card-select">
             <div class="select-wrapper">
               <select multiple class="w-full">
-                {% for encounter in pokemon.display_location_area_encounters %}
+                {% with encounter=pokemon.display_location_area_encounters %}
                   <option value="{{ encounter }}">{{ encounter }}</option>
-                {% endfor %}
+                {% endwith %}
               </select>
             </div>
           </div>
@@ -65,9 +65,9 @@
           <div class="card-select">
             <div class="select-wrapper">
               <select multiple class="w-full">
-                {% for move in pokemon.display_moves %}
+                {% with move=pokemon.display_moves %}
                   <option value="{{ move }}">{{ move }}</option>
-                {% endfor %}
+                {% endwith %}
               </select>
             </div>
           </div>
@@ -81,9 +81,9 @@
           <div class="card-select">
             <div class="select-wrapper">
               <select multiple class="w-full">
-                {% for past_type in pokemon.display_past_types %}
+                {% with past_type=pokemon.display_past_types %}
                   <option value="{{ past_type }}">{{ past_type }}</option>
-                {% endfor %}
+                {% endwith %}
               </select>
             </div>
           </div>
@@ -94,9 +94,9 @@
           <div class="card-select">
             <div class="select-wrapper">
               <select multiple class="w-full">
-                {% for species in pokemon.display_species %}
+                {% with species=pokemon.display_species %}
                   <option value="{{ species }}">{{ species }}</option>
-                {% endfor %}
+                {% endwith %}
               </select>
             </div>
           </div>
@@ -108,9 +108,9 @@
           <div class="card-select">
             <div class="select-wrapper">
               <select multiple class="w-full">
-                {% for stat in pokemon.display_stats %}
+                {% with stat=pokemon.display_stats %}
                   <option value="{{ stat }}">{{ stat }}</option>
-                {% endfor %}
+                {% endwith %}
               </select>
             </div>
           </div>
@@ -118,9 +118,9 @@
           <div class="card-select">
             <div class="select-wrapper">
               <select multiple class="w-full">
-                {% for type in pokemon.display_types %}
+                {% with type=pokemon.display_types %}
                   <option value="{{ type }}">{{ type }}</option>
-                {% endfor %}
+                {% endwith %}
               </select>
             </div>
           </div>
