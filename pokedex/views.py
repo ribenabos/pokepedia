@@ -32,11 +32,3 @@ class PokemonListView(View):
             'pokemon_list': pokemon_list
         }
         return render(request, 'pokemon_list.html', context)
-
-
-class PokemonCreateView(View):
-    def get(self, request):
-        return render(request, 'pokemon_create.html')
-
-    def post(self, request):
-        return render(request, 'pokemon_create.html')
