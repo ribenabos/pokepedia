@@ -20,7 +20,6 @@ Installation
 
    .. code-block:: shell
 
-      $ cd pokepedia
       $ python3 -m venv env
 
 3. Activate the virtual environment:
