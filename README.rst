@@ -63,6 +63,7 @@ To populate the database with data for every Pokémon, run the following command
    $ python manage.py populate_pokemon
 
 This will fetch data for each Pokémon from the Pokémon API and store it in the database.
+Note that it will be a long process.
 
 Contributing
 ------------
