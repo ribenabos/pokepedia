@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Pokemon Detail</h1>
+  <h2>{{ pokemon.name }}</h2>
+
+  <p>Abilities: {{ pokemon.abilities.all }}</p>
+  <p>Base Experience: {{ pokemon.base_experience }}</p>
+  <p>Forms: {{ pokemon.forms }}</p>
+  <p>Game Indices: {{ pokemon.game_indices.all }}</p>
+  <p>Height: {{ pokemon.height }}</p>
+  <p>ID: {{ pokemon.id }}</p>
+  <p>Is Default: {{ pokemon.is_default }}</p>
+  <p>Location Area Encounters: {{ pokemon.location_area_encounters }}</p>
+  <p>Moves: {{ pokemon.moves.all }}</p>
+  <p>Order: {{ pokemon.order }}</p>
+  <p>Past Types: {{ pokemon.past_types.all }}</p>
+  <p>Species: {{ pokemon.species }}</p>
+  <p>Sprites: {{ pokemon.sprites }}</p>
+  <p>Stats: {{ pokemon.stats.all }}</p>
+  <p>Types: {{ pokemon.types.all }}</p>
+  <p>Weight: {{ pokemon.weight }}</p>
+
+  <hr>
+
+  <h2>Edit Pokemon</h2>
+  <form method="POST" action="{% url 'pokemon_edit' pokemon.pk %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+
+  <hr>
+
+  <h2>Delete Pokemon</h2>
+  <form method="POST" action="{% url 'pokemon_delete' pokemon.pk %}">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+  </form>
+{% endblock %}

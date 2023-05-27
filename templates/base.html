@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Poképedia</title>
+  <meta charset="UTF-8">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  {# site meta and seo meta tags, override on specific pages as necessary. #}
+
+  {% block site_meta %}{% endblock %}
+  {% block seo-meta %}
+    <meta name="robots" content="index,follow">
+  {% endblock %}
+  {% load static %}
+  {% block extra_css %}{% endblock %}
+  {% block head_js %}
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
+  {% endblock %}
+
+  <link href="{% static 'css/site.css' %}" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@1.16.1/dist/full.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="bg-gray-100">
+  <nav class="bg-blue-500 py-4 px-8 fixed w-full">
+    <div class="container mx-auto">
+      <a href="{% url 'index' %}" class="text-white font-bold text-lg">Poképedia</a>
+      <a href="{% url 'pokemon_list' %}" class="text-white font-bold text-lg">Pokémon List</a>
+    </div>
+  </nav>
+  <div class="container mx-auto pt-16">
+    <div id="app" class="p-4">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
+</body>
+</html>

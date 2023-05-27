@@ -67,7 +67,7 @@ class Pokemon(models.Model):
     species = models.OneToOneField(Type, on_delete=models.CASCADE, related_name='pokemon')
     sprites = models.OneToOneField(Type, on_delete=models.CASCADE, related_name='pokemon_sprites')
     stats = models.ManyToManyField(Stat)
-    types = models.ManyToManyField(Type)
+    types = models.ManyToManyField(Type, related_name='type')
     weight = models.IntegerField()
 
     def __str__(self):

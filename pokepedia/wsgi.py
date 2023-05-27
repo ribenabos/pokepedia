@@ -1,5 +1,5 @@
 """
-WSGI config for pokepedia project.
+WSGI config for pokepedia1 project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

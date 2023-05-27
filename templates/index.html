@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Pokédex - Index
+{% endblock %}
+
+{% block content %}
+    <h1>Pokédex - Index</h1>
+
+    <h2>Navigation:</h2>
+    <ul>
+        <li><a href="{% url 'pokemon_list' %}">Pokémon List</a></li>
+        <li><a href="{% url 'pokemon_create' %}">Create Pokémon</a></li>
+    </ul>
+{% endblock %}

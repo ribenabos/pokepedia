@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Pokemon List</h1>
+  <ul>
+    {% for pokemon in pokemon_list %}
+      <li><a href="{% url 'pokemon_detail' pokemon.pk %}">{{ pokemon.name }}</a></li>
+    {% empty %}
+      <li>No Pokémon found.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'pokemon_create' %}">Create Pokemon</a>
+{% endblock %}
