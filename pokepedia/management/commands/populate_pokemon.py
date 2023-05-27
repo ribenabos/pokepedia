@@ -9,7 +9,7 @@ class Command(BaseCommand):
     help = 'Populate or update the database with data from the Pokémon API.'
 
     def handle(self, *args, **options):
-        for pokemon_id in range(1, 899):  # Change the range to populate or update more or less Pokemon
+        for pokemon_id in range(1, 151):  # Change the range to populate or update more or less Pokemon
             pokemon_data = pb.pokemon(pokemon_id)
             defaults = {
                 'height': pokemon_data.height,

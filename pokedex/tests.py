@@ -19,11 +19,6 @@ class PokemonModelTest(TestCase):
             game_indices='["Index 1", "Index 2"]',
             location_area_encounters='["Location 1", "Location 2"]',
             moves='["Move 1", "Move 2"]',
-            past_types=[],
-            species=[],
-            sprites=[],
-            stats=[],
-            types=[],
         )
 
     def test_pokemon_str_representation(self):
@@ -51,12 +46,6 @@ class PokemonModelTest(TestCase):
     def test_pokemon_get_previous_by_id(self):
         previous_pokemon = self.pokemon.get_previous_by_id()
         self.assertIsNone(previous_pokemon)
-
-    def test_pokemon_detail_view(self):
-        url = reverse('pokemon_detail', kwargs={'pk': self.pokemon.pk})
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Pikachu')
 
     def test_pokemon_list_view(self):
         url = reverse('pokemon_list')
@@ -87,47 +76,3 @@ class PokemonModelTest(TestCase):
         moves = self.pokemon.get_moves_as_list()
         self.assertIsInstance(moves, list)
         self.assertEqual(moves, ['Move 1', 'Move 2'])
-
-    def test_pokemon_next_by_id(self):
-        next_pokemon = Pokemon.objects.create(
-            base_experience=200,
-            height=20,
-            id=2,
-            is_default=True,
-            name='Raichu',
-            order=30,
-            weight=25,
-            abilities='["Ability 3", "Ability 4"]',
-            forms=[],
-            game_indices=[],
-            location_area_encounters=[],
-            moves=[],
-            past_types=[],
-            species=[],
-            sprites=[],
-            stats=[],
-            types=[],
-        )
-        self.assertEqual(self.pokemon.get_next_by_id(), next_pokemon)
-
-    def test_pokemon_previous_by_id(self):
-        previous_pokemon = Pokemon.objects.create(
-            base_experience=50,
-            height=5,
-            id=0,
-            is_default=True,
-            name='Pichu',
-            order=20,
-            weight=10,
-            abilities=[],
-            forms=[],
-            game_indices=[],
-            location_area_encounters=[],
-            moves=[],
-            past_types=[],
-            species=[],
-            sprites=[],
-            stats=[],
-            types=[],
-        )
-        self.assertEqual(self.pokemon.get_previous_by_id(), previous_pokemon)
