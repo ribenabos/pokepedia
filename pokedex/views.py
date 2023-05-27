@@ -18,11 +18,7 @@ class PokemonDetailView(View):
 
 class PokemonIndexView(View):
     def get(self, request):
-        pokemon_list = Pokemon.objects.all()
-        context = {
-            'pokemon_list': pokemon_list
-        }
-        return render(request, 'index.html', context)
+        return render(request, 'index.html')
 
 
 class PokemonListView(View):
