@@ -1,41 +1,21 @@
 {% block extra_css %}
   <style>
-    .card:before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      right: -10px;
-      bottom: -10px;
-      background: linear-gradient(to bottom right, #dcdcdc, #f5f5f5);
-      z-index: -1;
-    }
-
     .card {
-      position: relative;
+      max-height: 100%;
       overflow: hidden;
     }
 
-    .card-title {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
     .card-content {
-      margin-bottom: 10px;
-    }
-
-    .card-select {
-      margin-bottom: 10px;
+      max-height: 500px;
+      overflow-y: auto;
     }
   </style>
 {% endblock %}
 
 {% block content %}
   <div class="card">
-    <h1 class="card-title">Pokemon Detail</h1>
-    <h2>{{ pokemon.name }}</h2>
+    <h1 class="card-title" style="font-size: 48px"> #{{ pokemon.id }}</h1>
+    <h2 style="font-size: 36px;">{{ pokemon.name }}</h2>
 
     <div class="card-content">
       <div style="display: flex; flex-wrap: wrap;">
@@ -151,16 +131,16 @@
 
     <div class="navigation">
       {% if pokemon.id > 1 %}
-      {% with previous_pokemon=pokemon.get_previous_by_id %}
-        <a class="arrow" onclick="loadPokemonDetail({{ previous_pokemon.id }});
-        return false;" href="{% url 'pokemon_detail' previous_pokemon.id %}">&lt;Previous</a>
-      {% endwith %}
+        {% with previous_pokemon=pokemon.get_previous_by_id %}
+          <a class="arrow" onclick="loadPokemonDetail({{ previous_pokemon.id }});
+            return false;" href="{% url 'pokemon_detail' previous_pokemon.id %}">&lt;Previous</a>
+        {% endwith %}
       {% endif %}
       {% if pokemon.id < 899 %}
-      {% with next_pokemon=pokemon.get_next_by_id %}
-        <a class="arrow" onclick="loadPokemonDetail({{ next_pokemon.id }});
-        return false;" href="{% url 'pokemon_detail' next_pokemon.id %}">Next &gt;</a>
-      {% endwith %}
+        {% with next_pokemon=pokemon.get_next_by_id %}
+          <a class="arrow" onclick="loadPokemonDetail({{ next_pokemon.id }});
+            return false;" href="{% url 'pokemon_detail' next_pokemon.id %}">Next &gt;</a>
+        {% endwith %}
       {% endif %}
     </div>
   </div>

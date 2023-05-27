@@ -1,7 +1,8 @@
 from django.db import models
 from django.utils.safestring import mark_safe
-import pokebase as pb
 import json
+
+from rest_framework.fields import JSONField
 
 
 class Pokemon(models.Model):
@@ -12,16 +13,16 @@ class Pokemon(models.Model):
     name = models.CharField(max_length=255, unique=True)
     order = models.IntegerField()
     weight = models.IntegerField()
-    abilities = models.TextField(default="[]")
-    forms = models.TextField(default="[]")
-    game_indices = models.TextField(default="[]")
-    location_area_encounters = models.TextField(default="[]")
-    moves = models.TextField(default="[]")
-    past_types = models.TextField(default="[]")
-    species = models.TextField(default="[]")
-    sprites = models.TextField(default="[]")
-    stats = models.TextField(default="[]")
-    types = models.TextField(default="[]")
+    abilities = JSONField(default=list)
+    forms = JSONField(default=list)
+    game_indices = JSONField(default=list)
+    location_area_encounters = JSONField(default=list)
+    moves = JSONField(default=list)
+    past_types = JSONField(default=list)
+    species = JSONField(default=list)
+    sprites = JSONField(default=list)
+    stats = JSONField(default=list)
+    types = JSONField(default=list)
 
     def __str__(self):
         return self.name

@@ -19,7 +19,7 @@ class PokemonDetailView(View):
 
 class PokemonIndexView(View):
     def get(self, request):
-        return render(request, 'index.html')
+        return render(request, 'pokedex_index.html')
 
 
 class PokemonListView(View):
