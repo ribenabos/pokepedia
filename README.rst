@@ -69,6 +69,12 @@ To populate the database with data for every Pokémon, run the following command
 This will fetch data for each Pokémon from the Pokémon API and store it in the database.
 Note that it will be a long process.
 
+To run unit tests, run the following command:
+
+.. code-block:: shell
+
+   $ python manage.py test
+
 Contributing
 ------------
 
