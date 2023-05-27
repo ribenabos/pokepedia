@@ -133,6 +133,3 @@ class PokemonModelTest(TestCase):
             types=[],
         )
         self.assertEqual(self.pokemon.get_previous_by_id(), previous_pokemon)
-
-    # Add more test cases as needed
-
