@@ -8,7 +8,7 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     created_at = models.DateTimeField(auto_now_add=True)
-    username = models.CharField(max_length=150, blank=True, null=True)
+    username = models.CharField(max_length=150, blank=True, unique=True, null=True)
 
     groups = models.ManyToManyField(
         'auth.Group',

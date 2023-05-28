@@ -1,8 +1,36 @@
-from django.shortcuts import render, redirect
 from .forms import SignupForm
 from django.utils.text import slugify
 
 from .models import User
+
+from django.contrib.auth import login, logout
+from django.shortcuts import render, redirect
+from .forms import LoginForm
+from .backend import EmailBackend
+
+
+def login_view(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            user = EmailBackend().authenticate(request, email=email, password=password)
+            if user is not None:
+                login(request, user)
+                user.is_authenticated = True
+                return redirect('index')
+            else:
+                return render(request, 'auth_signup/login.html', {'form': form})
+        else:
+            return render(request, 'auth_signup/login.html', {'form': form})
+    else:
+        form = LoginForm()
+        return render(request, 'auth_signup/login.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    return redirect('index')
 
 
 def signup(request):
@@ -13,7 +41,6 @@ def signup(request):
             username = generate_unique_username(user.first_name, user.last_name)
             user.username = username
             user.save()
-            # Redirect to signup success page
             return redirect('signup_success')
     else:
         form = SignupForm()
