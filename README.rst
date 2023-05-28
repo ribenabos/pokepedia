@@ -44,6 +44,12 @@ Installation
 
       $ python manage.py migrate
 
+6. Create a superuser:
+
+   .. code-block:: shell
+
+      $ python manage.py createsuperuser
+
 Usage
 -----
 
